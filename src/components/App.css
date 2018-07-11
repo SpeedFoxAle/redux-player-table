@@ -1,0 +1,33 @@
+.App {
+    margin: auto;
+    width: 80%;
+    text-align: left;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.filters {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+input {
+    height: 30px;
+    width: 120px;
+}
+
+input[type=button] {
+    height: 35px;
+    margin-left: 5px;
+    width: 120px;
+}
+
+select {
+    height: 36px;
+    margin: 0 5px;
+}
+
+table {
+    margin-top: 10px;
+}
