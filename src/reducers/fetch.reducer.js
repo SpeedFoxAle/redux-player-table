@@ -1,8 +1,11 @@
-import { FETCH_DATA, SERCH_BY_FILTER } from '../actions';
+import { FETCH_DATA, SERCH_BY_FILTER, CLEAR_FILTERS } from '../actions'
 
 const initialState = {
     fetched: false,
-    players: null
+    source: 'players',
+    players: null,
+    filters: [],
+    filteredPlayer: null
 }
 
 export default (state = initialState, action) => {
@@ -17,22 +20,32 @@ export default (state = initialState, action) => {
                         name: player.name,
                         position: player.position,
                         age: age,
-                        filtered: false
                     }
                 })
             }
-            break;
         case SERCH_BY_FILTER:
             return {
                 ...state, 
-                players: state.players.filter(player => {
-                    let isHere = player[action.search].toString().search(action.filter) !== -1
+                source: 'filteredPlayer',
+                filters: state.filters && state.filters.indexOf(action.search) === -1 ? state.filters.concat(action.search) : state.filters,
+                filteredPlayer: state.players && state.players.filter(player => {
+                    let isHere = false
+                    state.filters.forEach((filter) => {
+                        isHere = player[filter].toString().search(action.filter) !== -1
+                    })
                     if(isHere) {
                         return player
+                    } else {
+                        return null
                     }
-                }) 
+                })
             }
-            break;
+        case CLEAR_FILTERS:
+            return {
+                ...state, 
+                filteredPlayer: state.players,
+                filters: []
+            }
         default:
             return state
     }
