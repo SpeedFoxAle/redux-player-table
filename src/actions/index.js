@@ -1,23 +1,9 @@
 export const FETCH_DATA = 'FETCH_DATA';
-export const NAME_FILTER = 'NAME_FILTER';
-export const POSITION_FILTER = 'POSITION_FILTER';
-export const AGE_FILTER = 'AGE_FILTER';
+export const SERCH_BY_FILTER = 'SERCH_BY_FILTER';
 
-export const setNameFilter = (filter) => {
+export const searchByFilter = (filter, search) => {
     return (dispatch) => {
-        dispatch({type: NAME_FILTER, filter: filter });
-    }
-}
-
-export const setAgeFilter = (filter) => {
-    return (dispatch) => {
-        dispatch({type: AGE_FILTER, filter: filter });
-    }
-}
-
-export const setPositionFilter = (filter) => {
-    return (dispatch) => {
-        dispatch({type: POSITION_FILTER, filter: filter });
+        dispatch({type: SERCH_BY_FILTER, filter: filter, search: search });
     }
 }
 

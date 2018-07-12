@@ -1,5 +1,4 @@
-
-import { FETCH_DATA, NAME_FILTER, POSITION_FILTER, AGE_FILTER } from '../actions';
+import { FETCH_DATA, SERCH_BY_FILTER } from '../actions';
 
 const initialState = {
     fetched: false,
@@ -22,33 +21,18 @@ export default (state = initialState, action) => {
                     }
                 })
             }
-        case NAME_FILTER:
+            break;
+        case SERCH_BY_FILTER:
             return {
                 ...state, 
-                players: state.players.filter(player => { 
-                    if(player.name === action.filter) {
+                players: state.players.filter(player => {
+                    let isHere = player[action.search].toString().search(action.filter) !== -1
+                    if(isHere) {
                         return player
                     }
                 }) 
             }
-        case POSITION_FILTER:
-            return {
-                ...state, 
-                players: state.players.filter(player => { 
-                    if(player.position === action.filter) {
-                        return player;
-                    }
-                }) 
-            }
-        case AGE_FILTER:
-            return {
-                ...state, 
-                players: state.players.filter(player => { 
-                    if(player.age.toString() === action.filter) {
-                        return player;
-                    }
-                })
-            }
+            break;
         default:
             return state
     }
