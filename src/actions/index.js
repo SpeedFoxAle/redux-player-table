@@ -3,6 +3,12 @@ export const SERCH_BY_FILTER = 'SERCH_BY_FILTER'
 export const CLEAR_FILTERS = 'CLEAR_FILTERS'
 export const SET_FILTERS = 'SET_FILTERS'
 
+export const dummyAction = () => {
+    return {
+        selectedValue: 1,
+        type: CLEAR_FILTERS
+    }
+}
 export const searchByFilter = (filter, search) => {
     return (dispatch) => {
         dispatch({type: SET_FILTERS, search: search })
@@ -21,6 +27,7 @@ export const getAllData = () => {
         fetch('https://football-players-b31f2.firebaseio.com/players.json?print=pretty')
             .then(response => response.json())
             .then(players => {
+                console.log(players);
                 dispatch({
                     type: FETCH_DATA,  
                     players: players
