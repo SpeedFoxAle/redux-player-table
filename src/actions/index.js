@@ -27,7 +27,6 @@ export const getAllData = () => {
         fetch('https://football-players-b31f2.firebaseio.com/players.json?print=pretty')
             .then(response => response.json())
             .then(players => {
-                console.log(players);
                 dispatch({
                     type: FETCH_DATA,  
                     players: players
