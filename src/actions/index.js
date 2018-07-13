@@ -2,11 +2,12 @@ export const FETCH_DATA = 'FETCH_DATA'
 export const SERCH_BY_FILTER = 'SERCH_BY_FILTER'
 export const CLEAR_FILTERS = 'CLEAR_FILTERS'
 export const SET_FILTERS = 'SET_FILTERS'
+export const DOMMY = 'DOMMY'
 
 export const dummyAction = () => {
     return {
-        selectedValue: 1,
-        type: CLEAR_FILTERS
+        value: 1,
+        type: DOMMY
     }
 }
 export const searchByFilter = (filter, search) => {
