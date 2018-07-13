@@ -44,7 +44,7 @@ class App extends Component {
                         </tbody>
                     </table> :
                 <p>No Player Found T_T</p>
-                console.log(this.props.filters);
+                
         return (
             <div className="App">
                 <h3>Football Player Finder</h3>

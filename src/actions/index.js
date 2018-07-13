@@ -1,9 +1,11 @@
 export const FETCH_DATA = 'FETCH_DATA'
 export const SERCH_BY_FILTER = 'SERCH_BY_FILTER'
 export const CLEAR_FILTERS = 'CLEAR_FILTERS'
+export const SET_FILTERS = 'SET_FILTERS'
 
 export const searchByFilter = (filter, search) => {
     return (dispatch) => {
+        dispatch({type: SET_FILTERS, search: search })
         dispatch({type: SERCH_BY_FILTER, filter: filter, search: search })
     }
 }
