@@ -1,9 +1,9 @@
 
-import fetchPlayer from './fetch.reducer'
+import fetch from './fetch.reducer'
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
-  fetchPlayer
+    fetch
 });
 
 export default rootReducer;
