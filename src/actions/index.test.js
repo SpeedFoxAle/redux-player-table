@@ -1,12 +1,12 @@
 import * as actionsList from './index'
 
-describe('test actions', () => {
+describe('Test actions', () => {
     it('Should be work', () => {
-        const selectedValue = 1
+        const value = 1,
         const expectedAction = {
-            selectedValue,
+            value,
             type: actionsList.CLEAR_FILTERS
         }
-        expect(actionsList.dummyAction(selectedValue)).toEqual(expectedAction)
+        expect(actionsList.dummyAction(value)).toEqual(expectedAction)
     })
 })
