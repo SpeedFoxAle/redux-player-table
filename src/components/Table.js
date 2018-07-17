@@ -23,7 +23,7 @@ class Table extends Component {
         let source = this.props.source,
             table = 
                 this.props.fetched && this.props[source] && this.props[source].length > 0 ?
-                    <table cellPadding="0" cellSpacing="2">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -46,7 +46,7 @@ class Table extends Component {
                 <p>No Player Found T_T</p>
                 
         return (
-            <div className="table-wrapper">
+            <div className="table-wrapper" id="table-wrapper">
                 <h3>Football Player Finder</h3>
                 <div className="filters">
                     <input placeholder="Name" onChange={(event) => this.searchByFilter(event.target.value, 'name')}/>    

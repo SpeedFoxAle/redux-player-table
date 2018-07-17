@@ -1,26 +1,42 @@
-import { FETCH_DATA, SERCH_BY_FILTER, CLEAR_FILTERS, SET_FILTERS } from '../actions'
+import { GET_PLAYERS_SUCCESS, SERCH_BY_FILTER, CLEAR_FILTERS, SET_FILTERS } from '../actions'
 
 const initialState = {
     fetched: false,
     source: 'players',
-    players: null,
+    players: [],
     filters: [],
     filteredPlayer: null
 }
 
+export const parsedPlayer = (player) => {
+    let age = new Date().getFullYear() - new Date(player.dateOfBirth).getFullYear();
+    return {
+        name: player.name,
+        position: player.position,
+        age: age,
+    }
+}
+
+export const searchPlayer = (state, action, player) => {
+    let isHere = false
+    state.filters && state.filters.forEach((filter) => {
+        isHere = player[filter].toString().search(action.filter) !== -1
+    })
+    if(isHere) {
+        return player
+    } else {
+        return null
+    }
+}
+
 export default (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_DATA:
+        case GET_PLAYERS_SUCCESS:
             return {
                 ...state, 
                 fetched: true, 
                 players: action.players.map( player => {
-                    let age = new Date().getFullYear() - new Date(player.dateOfBirth).getFullYear();
-                    return {
-                        name: player.name,
-                        position: player.position,
-                        age: age,
-                    }
+                    return parsedPlayer(player) 
                 })
             }
         case SET_FILTERS:
@@ -33,15 +49,7 @@ export default (state = initialState, action) => {
                 ...state, 
                 source: 'filteredPlayer',
                 filteredPlayer: state.players && state.players.filter(player => {
-                    let isHere = false
-                    state.filters.forEach((filter) => {
-                        isHere = player[filter].toString().search(action.filter) !== -1
-                    })
-                    if(isHere) {
-                        return player
-                    } else {
-                        return null
-                    }
+                    return searchPlayer(state, action, player)
                 })
             }
         case CLEAR_FILTERS:
