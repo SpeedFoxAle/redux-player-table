@@ -63,7 +63,7 @@ class Table extends Component {
                         <option value="Left-Back">Left Back</option>
                         <option value="Right-Back">Right Back</option>
                     </select>
-                    <input placeholder="Age" onChange={(event) => this.searchByFilter(event.target.value, 'age')}/>    
+                    <input type="number" placeholder="Age" onChange={(event) => this.searchByFilter(event.target.value, 'age')}/>    
                     <input type="button" value="Reset Filter" onClick={ () => this.clearAllFilters() }/>
                 </div>
                 {table}
